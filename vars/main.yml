@@ -1,0 +1,5 @@
+---
+# vars file for sudo-users
+group:  "devops"
+users:
+  - name: "deploy"

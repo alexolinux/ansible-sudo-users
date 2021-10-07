@@ -1,0 +1,31 @@
+---
+# tasks file for sudo-users
+- name: Ensure group exists
+  ansible.builtin.group:
+    name: "{{ group }}"
+    state: present
+
+- name: Add the user(s) on Linux Instance(s)
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    comment: "Devops Users Created by Ansible"
+    groups: "{{ group }}"
+    append: yes
+  with_items: "{{ users }}"
+
+- name: Set authorized key taken from file
+  ansible.posix.authorized_key:
+    user: "{{ item.name }}"
+    state: present
+    key: "{{ lookup('file', '{{ item.name }}.pub') }}"
+  with_items: "{{ users }}"
+
+- name: Add users to sudoers
+  lineinfile:
+    path: /etc/sudoers.d/zoox
+    line: '{{ item.name }} ALL=(ALL) NOPASSWD: ALL'
+    state: present
+    mode: 0440
+    create: yes
+    validate: 'visudo -cf %s'
+  with_items: "{{ users }}"

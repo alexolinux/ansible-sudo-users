@@ -22,7 +22,7 @@
 
 - name: Add users to sudoers
   lineinfile:
-    path: /etc/sudoers.d/zoox
+    path: /etc/sudoers.d/devops
     line: '{{ item.name }} ALL=(ALL) NOPASSWD: ALL'
     state: present
     mode: 0440

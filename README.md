@@ -61,6 +61,14 @@ There must be the SSH pub key of the user(s) in files folder, with the same name
 └── site.yml
 ```
 
+### Let's run!
+
+```ansible
+ansible-playbook site.yml
+```
+
+- Reference: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html
+
 ---
 ### License
 GPL-3.0 License

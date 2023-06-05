@@ -21,7 +21,9 @@ users:
 
 There must be the SSH pub key of the user(s) in files folder, with the same name as the user(s) (i.e: user1.pub).
 
-## Example Playbook
+## Example Role Playbook
+
+* `site.yml`
 
 ```ansible
 - hosts: linux_servers
@@ -29,6 +31,37 @@ There must be the SSH pub key of the user(s) in files folder, with the same name
     - ansible-sudo-users
 ```
 
+---
+> **Ansible Role Structure Tree:**
+
+
+```shell
+.
+├── ansible.cfg
+├── hosts.ini
+├── roles
+│   └── ansible-sudo-users
+│       ├── defaults
+│       │   └── main.yml
+│       ├── files
+│       │   └── alexmbarbosa.pub
+│       ├── handlers
+│       │   └── main.yml
+│       ├── LICENSE
+│       ├── meta
+│       │   └── main.yml
+│       ├── README.md
+│       ├── tasks
+│       │   └── main.yml
+│       ├── tests
+│       │   ├── inventory
+│       │   └── test.yml
+│       └── vars
+│           └── main.yml
+└── site.yml
+```
+
+---
 ### License
 GPL-3.0 License
 
